@@ -16,5 +16,5 @@ Installed:
 
 
 Usage
-'''vagrant up'''
-'''vagrant ssh'''
+```vagrant up```
+```vagrant ssh```
