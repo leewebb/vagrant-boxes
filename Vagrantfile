@@ -73,7 +73,23 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y tmux
     sudo apt-get install -y curl
     sudo apt-get install -y wget
-  #   sudo apt-get install language-pack-en
-  #   sudo apt-get install -y apache2
+    sudo apt-get install -y tree
   SHELL
+
+  $script = <<-SCRIPT
+    mkdir ~/projects
+    git clone https://github.com/jonbartlett/dotfiles.git ~/projects/dotfiles
+    cd ~/projects/dotfiles
+    ~/projects/dotfiles/link.sh 
+    cat ~/projects/dotfiles/.bashrc_ubuntu >> ~/.bashrc
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+  SCRIPT
+
+  config.vm.provision "shell", inline: $script, privileged: false 
+
 end
