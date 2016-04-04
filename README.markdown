@@ -14,8 +14,8 @@ Installed:
 - wget
 - curl
 
+Usage:
 
-Usage
 ```vagrant up```
 
 ```vagrant ssh```
