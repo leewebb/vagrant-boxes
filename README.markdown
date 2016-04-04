@@ -17,4 +17,5 @@ Installed:
 
 Usage
 ```vagrant up```
+
 ```vagrant ssh```
