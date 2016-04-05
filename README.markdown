@@ -15,7 +15,7 @@ A portable Dev box that can be fired up on the Windows machine that I am invaria
 - wget
 - curl
 
-###To Do
+###To Do:
 - Oracle XE
 - Oracle Instant Client + SQLPlus
 
