@@ -10,6 +10,12 @@ sudo apt-get install -y tmux
 sudo apt-get install -y curl
 sudo apt-get install -y wget
 sudo apt-get install -y tree
+sudo apt-get install -y ntp
+
+# set timezone
+echo "Australia/Sydney" | sudo tee /etc/timezone
+#echo "Europe/London" | sudo tee /etc/timezone
+sudo dpkg-reconfigure --frontend noninteractive tzdata
 
 # create projects directory
 mkdir ~/projects
