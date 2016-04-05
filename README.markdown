@@ -27,15 +27,13 @@ Clone this repo
 
 If behind a corporate firewall that requires the use of a proxy, set the following Windows environment variables:
 
-```HTTP_PROXY=http://proxy.company.com.au:8080```
-
-```HTTPS_PROXY=https://proxy.company.com.au:8080```
-
-```VAGRANT_HTTP_PROXY=http://proxy.company.com.au:8080```
-
-```VAGRANT_HTTPS_PROXY=https://proxy.company.com.au:8080```
-
-```VAGRANT_NO_PROXY=localhost,127.0.0.1,.company.com.au```
+```
+HTTP_PROXY=http://proxy.company.com.au:8080
+HTTPS_PROXY=https://proxy.company.com.au:8080
+VAGRANT_HTTP_PROXY=http://proxy.company.com.au:8080
+VAGRANT_HTTPS_PROXY=https://proxy.company.com.au:8080
+VAGRANT_NO_PROXY=localhost,127.0.0.1,.company.com.au
+```
 
 then add proxy support in Vagrant:
 
