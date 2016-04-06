@@ -1,31 +1,22 @@
-# Portable Dev Box
+#Portable Dev Box
 
-A portable Dev box that can be fired up on the Windows machine that I am invariably required to use. Database / backend focused.
+A series of portable VM instances that can be fired up on the host (Windows) machine that I am invariably required to use.
 
-###Requires:
+##Requires
+
+All boxes require the following on the host machine:
+
 - Oracle Virtual Box
 - Vagrant
-- Git
+- Git (or copy files direct)
 
-###Installed:
-- git
-- svn
-- vim
-- tmux
-- wget
-- curl
-
-###To Do:
-- Oracle XE
-- Oracle Instant Client + SQLPlus
-
-###Usage:
+##Usage:
 
 Clone this repo
 
 ```git clone https://github.com/jonbartlett/portable-dev-box```
 
-If behind a corporate firewall that requires the use of a proxy, set the following Windows environment variables:
+If behind a corporate firewall that requires the use of a proxy and using Windows, set the following environment variables:
 
 ```
 HTTP_PROXY=http://proxy.company.com.au:8080
@@ -35,7 +26,9 @@ VAGRANT_HTTPS_PROXY=https://proxy.company.com.au:8080
 VAGRANT_NO_PROXY=localhost,127.0.0.1,.company.com.au
 ```
 
-then add proxy support in Vagrant:
+*all steps that follow should take place within the same directory as the ```Vagrant``` file for the machine you want to use.*
+
+Add proxy support in Vagrant:
 
 ```vagrant plugin install vagrant-proxyconf```
 
@@ -54,4 +47,23 @@ Connect into VM. Only works if using a command interpreter with a built in SSH c
 or
 
 ```ssh -p 2222 vagrant@127.0.0.1```
+
+
+##The Boxes
+- generic-dev: base install with all my goodies installed
+- more to come......
+
+##Generic-Dev
+
+Base box with all my config installed. Will be used as a base to build other technology specific machines.
+
+###Installed:
+- git
+- svn
+- vim
+- tmux
+- wget
+- curl
+
+config from above sourced via https://github.com/jonbartlett/dotfiles
 
