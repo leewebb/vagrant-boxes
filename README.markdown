@@ -50,7 +50,7 @@ or
 
 
 ##The Boxes
-- generic-dev: base install with all my goodies installed
+- generic-dev: *base install with all my goodies installed*
 - more to come......
 
 ##Generic-Dev
@@ -65,5 +65,5 @@ Base box with all my config installed. Will be used as a base to build other tec
 - wget
 - curl
 
-config from above sourced via https://github.com/jonbartlett/dotfiles
+*config sourced via https://github.com/jonbartlett/dotfiles*
 
