@@ -11,6 +11,9 @@ sudo apt-get install -y curl
 sudo apt-get install -y wget
 sudo apt-get install -y tree
 sudo apt-get install -y ntp
+sudo apt-get install -y unzip
+sudo apt-get install -y zip
+
 
 # set timezone
 echo "Australia/Sydney" | sudo tee /etc/timezone
