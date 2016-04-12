@@ -4,7 +4,7 @@
 sudo apt-get update
 sudo locale-gen en_AU.UTF-8
 sudo apt-get install -y git
-sudo apt-get install -y subversion    
+sudo apt-get install -y subversion
 sudo apt-get install -y vim
 sudo apt-get install -y tmux
 sudo apt-get install -y curl
@@ -13,7 +13,7 @@ sudo apt-get install -y tree
 sudo apt-get install -y ntp
 sudo apt-get install -y unzip
 sudo apt-get install -y zip
-
+sudo apt-get install -y default-jre
 
 # set timezone
 echo "Australia/Sydney" | sudo tee /etc/timezone
@@ -26,7 +26,7 @@ mkdir ~/projects
 # dot files
 git clone https://github.com/jonbartlett/dotfiles.git ~/projects/dotfiles
 cd ~/projects/dotfiles
-~/projects/dotfiles/link.sh 
+~/projects/dotfiles/link.sh
 cat ~/projects/dotfiles/.bashrc_ubuntu >> ~/.bashrc
 
 # fancy bash prompt
@@ -39,6 +39,6 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
 # Vundle - Launch vim and run :PluginInstall
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# vim +PluginInstall +qall 
+# vim +PluginInstall +qall
 
 
