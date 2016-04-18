@@ -15,7 +15,14 @@ sudo apt-get install -y unzip
 sudo apt-get install -y zip
 sudo apt-get install -y default-jre
 sudo apt-get install -y build-essential g++
+
+# install system ruby but not the old version that comes as default
 sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev llvm # for ruby-build
+sudo apt-get install -y software-properties-common
+sudo apt-add-repository -y ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install -y ruby2.2
+sudo apt-get install -y ruby2.2-dev
 
 # set timezone
 echo "Australia/Sydney" | sudo tee /etc/timezone
@@ -40,7 +47,9 @@ echo '#rbenv config' >> ~/.bashrc
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # install ruby-build
-
+rbenv install rbx-3.27
+touch /home/vagrant/.rbenv/version
+echo "rbx-3.27" >> /home/vagrant/.rbenv/version
 
 # Vundle - Launch vim and run :PluginInstall
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
