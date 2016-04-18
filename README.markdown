@@ -51,7 +51,7 @@ or
 
 ##The Boxes
 - generic-dev: *base install with all my goodies installed*
-- more to come......
+- database-dev: base install + DB2 Client + Oracle Client
 
 ##Generic-Dev
 
@@ -67,3 +67,8 @@ Base box with all my config installed. Will be used as a base to build other tec
 
 *config sourced via https://github.com/jonbartlett/dotfiles*
 
+##Database-Dev
+
+Includes everything in the Generic-Dev box with the addition of database developement tools. Specifically:
+
+* 

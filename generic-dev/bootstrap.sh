@@ -14,6 +14,8 @@ sudo apt-get install -y ntp
 sudo apt-get install -y unzip
 sudo apt-get install -y zip
 sudo apt-get install -y default-jre
+sudo apt-get install -y build-essential g++
+sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev llvm # for ruby-build
 
 # set timezone
 echo "Australia/Sydney" | sudo tee /etc/timezone
@@ -34,8 +36,11 @@ git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt -
 
 # rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo '#rbenv config' >> ~/.bashrc
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # install ruby-build
+
 
 # Vundle - Launch vim and run :PluginInstall
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
