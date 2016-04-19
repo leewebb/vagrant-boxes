@@ -64,6 +64,10 @@ Base box with all my config installed. Will be used as a base to build other tec
 - tmux
 - wget
 - curl
+- java
+- ruby + rbenv
+
+for up-to-date list of packages installed see ```bootstrap.sh```.
 
 *config sourced via https://github.com/jonbartlett/dotfiles*
 
@@ -71,4 +75,7 @@ Base box with all my config installed. Will be used as a base to build other tec
 
 Includes everything in the Generic-Dev box with the addition of database developement tools. Specifically:
 
-* 
+* DB2 Database Drivers for Linux
+* Oracle Instant Client including SQL*PLus - coming.....
+
+See README for more information
