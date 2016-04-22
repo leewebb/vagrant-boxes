@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# core packages
+## core packages
 sudo apt-get update
 sudo locale-gen en_AU.UTF-8
 sudo apt-get install -y git
@@ -10,7 +10,6 @@ sudo apt-get install -y tmux
 sudo apt-get install -y curl
 sudo apt-get install -y wget
 sudo apt-get install -y tree
-sudo apt-get install -y ntp
 sudo apt-get install -y unzip
 sudo apt-get install -y zip
 sudo apt-get install -y default-jre
@@ -25,10 +24,21 @@ sudo apt-get update
 sudo apt-get install -y ruby2.2
 sudo apt-get install -y ruby2.2-dev
 
-# set timezone
+
+## Time
+
+# use NTP or if blocked (uses UDP) use crontab entry below
+sudo apt-get install -y ntp
+
+#sudo crontab -l | { cat; echo "@hourly date -s \"$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')\" >> /tmp/crontab.log"; } | crontab -
+#sudo touch /tmp/crontab.log
+
 echo "Australia/Sydney" | sudo tee /etc/timezone
 #echo "Europe/London" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
+
+
+## File System
 
 # create projects directory
 mkdir ~/projects
@@ -42,6 +52,8 @@ cat ~/projects/dotfiles/.bashrc_ubuntu >> ~/.bashrc
 # fancy bash prompt
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 
+## Ruby
+
 # rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo '#rbenv config' >> ~/.bashrc
@@ -51,6 +63,8 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # 
 rbenv install rbx-3.27
 touch /home/vagrant/.rbenv/version
 echo "rbx-3.27" >> /home/vagrant/.rbenv/version
+
+## Vim
 
 # Vundle - Launch vim and run :PluginInstall
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
