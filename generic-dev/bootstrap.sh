@@ -24,14 +24,12 @@ sudo apt-get update
 sudo apt-get install -y ruby2.2
 sudo apt-get install -y ruby2.2-dev
 
-
 ## Time
-
-# use NTP or if blocked (uses UDP) use crontab entry below
+# Vbox time drift between host is significant. NTP doesn't solve this.
+#  better change vbox settings for provisioned environment as follows:
+#    VBoxManage guestproperty set "VBOX name here" "/VirtualBox/GuestAdd/VBoxService/PARAMETER" --timesync-set-threshold=500
+#    http://www.virtualbox.org/manual/ch09.html#changetimesync
 sudo apt-get install -y ntp
-
-#sudo crontab -l | { cat; echo "@hourly date -s \"$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')\" >> /tmp/crontab.log"; } | crontab -
-#sudo touch /tmp/crontab.log
 
 echo "Australia/Sydney" | sudo tee /etc/timezone
 #echo "Europe/London" | sudo tee /etc/timezone
