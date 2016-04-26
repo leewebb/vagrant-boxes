@@ -58,9 +58,9 @@ echo '#rbenv config' >> ~/.bashrc
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # install ruby-build
-rbenv install rbx-3.27
-touch /home/vagrant/.rbenv/version
-echo "rbx-3.27" >> /home/vagrant/.rbenv/version
+#rbenv install rbx-3.27
+#touch /home/vagrant/.rbenv/version
+#echo "rbx-3.27" >> /home/vagrant/.rbenv/version
 
 ## Vim
 
