@@ -11,27 +11,34 @@ sudo mkdir /opt/ibm
 sudo chown -R vagrant:vagrant /opt/ibm
 
 # copy client install source to/opt/ibm then extract
-cp /vagrant/ibm_data_server_driver_package_linuxia32_v10.5.tar.gz /opt/ibm
-gunzip ibm_data_server_driver_package_linuxia32_v10.5.tar.gz
-tar -xvf ibm_data_server_driver_package_linuxia32_v10.5.tar
+cd /opt/ibm
+cp /vagrant/ibm_data_server_runtime_client_linuxia32_v10.5.tar /opt/ibm
+gunzip ibm_data_server_runtime_client_linuxia32_v10.5.tar.gz
+tar -xvf ibm_data_server_runtime_client_linuxia32_v10.5.tar
 
 # remove source tar ball
-rm ibm_data_server_driver_package_linuxia32_v10.5.tar
+rm ibm_data_server_runtime_client_linuxia32_v10.5.tar
 
-# run installer
-cd dsdriver
-./installDSDriver
+# run pre-reqs script
+cd rctl
+./db2prereqcheck
 
-# Modify bashrc to source db2profile
-cat <<EOT >> ~/.bashrc
-# source db2 profile
-if [ -f /opt/ibm/dsdriver/db2profile ]; then
-    source /opt/ibm/dsdriver/db2profile
-fi
+# dodgy hack to work around issues reported by db2prereqcheck
+ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so
 
-# force db2 client to open in termnial mode
-alias clpplus="clpplus -nw"
+# run install script
+./db2_install
 
-EOT
+# Modify bashrc to source db2profile (not needed for none root install)
+#cat <<EOT >> ~/.bashrc
+## source db2 profile
+#if [ -f /opt/ibm/dsdriver/db2profile ]; then
+    #source /opt/ibm/dsdriver/db2profile
+#fi
+
+## force db2 client to open in termnial mode
+#alias clpplus="clpplus -nw"
+
+#EOT
 
 # END Bootstrap script for Database Dev Box provisioning
