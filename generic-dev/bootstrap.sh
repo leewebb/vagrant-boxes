@@ -15,6 +15,7 @@ sudo apt-get install -y zip
 sudo apt-get install -y default-jre
 sudo apt-get install -y build-essential g++
 sudo apt-get install -y shellcheck # https://github.com/koalaman/shellcheck
+sudo apt-get install -y cmake
 
 # install system ruby but not the old version as rbenv builds require 2.0+ (not 1.9)
 sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev llvm # for ruby-build
@@ -68,4 +69,11 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build # 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # vim +PluginInstall +qall
 
+# tmux-mem-cpu-load
+# https://github.com/thewtex/tmux-mem-cpu-load
+git clone https://github.com/thewtex/tmux-mem-cpu-load.git ~/projects/tmux-mem-cpu-load
+cd ~/projects/tmux-mem-cpu-load
+cmake .
+make
+sudo make install
 
