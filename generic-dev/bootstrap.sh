@@ -78,3 +78,10 @@ cmake .
 make
 sudo make install
 
+# my notification script
+# https://gist.github.com/jonbartlett/faf43c9535dfe6a3ae8b89075e48e200
+git clone https://gist.github.com/faf43c9535dfe6a3ae8b89075e48e200.git ~/projects/notify
+chmod +x ~/projects/notify/notify
+sudo ln -s /home/vagrant/projects/notify/notify /usr/bin/notify
+
+
