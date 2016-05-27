@@ -9,6 +9,9 @@ Vagrant.configure(2) do |config|
   # config.vm.network "public_network"
   # config.vm.synced_folder "../SVN", "/svn"
 
+  # allow SSH connections via port 2223
+  config.vm.network "forwarded_port", guest: 22, host: 2223
+
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = "1024"
