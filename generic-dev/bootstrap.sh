@@ -18,6 +18,8 @@ sudo apt-get install -y shellcheck # https://github.com/koalaman/shellcheck
 sudo apt-get install -y cmake
 sudo apt-get install -y dos2unix
 sudo apt-get install -y nmon
+sudo apt-get install -y ack-grep # http://beyondgrep.com/ & https://github.com/mileszs/ack.vim
+sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 # install system ruby but not the old version as rbenv builds require 2.0+ (not 1.9)
 sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev llvm # for ruby-build
