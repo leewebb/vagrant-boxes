@@ -16,7 +16,7 @@ sudo apt-get install -y libaio1 lib32stdc++
 LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
 echo ${LINK}
 #cd /tmp ; aria2c -x 16 ${LINK} ; tar zxvf *.tar.gz
-cd /tmp ; wget ${LINK} ; tar zxvf *.tar.gz
+cd /tmp ; wget --progress=dot:mega ${LINK} ; tar zxvf *.tar.gz
 
 # Retrieves and extract log4db2
 cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
