@@ -7,7 +7,7 @@ For now this includes the following:
 * DB2 Server (10.5.0.7) for Linux 32 bit
 * [DB2Unit](https://github.com/angoca/db2unit) - Unit testing framework for DB2
 
-Inspired and built upon [DB2Unit](https://github.com/angoca/db2unit) by Andres Gomez Casanova.
+Inspired and built upon [DB2Unit](https://github.com/angoca/db2unit) and [db2-travis](https://github.com/angoca/db2-travis) by Andres Gomez Casanova.
 
 ## DB2 Server
 
