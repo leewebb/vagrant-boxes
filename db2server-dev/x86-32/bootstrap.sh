@@ -6,16 +6,17 @@
 ## core packages
 sudo apt-get update
 sudo apt-get install -y wget
-sudo apt-get install -y aria2
+#sudo apt-get install -y aria2
 
-sudo apt-get install libaio1 lib32stdc++6 -y
-sudo apt-get install -qq libpam-ldap:i386
+sudo apt-get install -y libaio1 lib32stdc++
+#sudo apt-get install -y libpam-ldap:i386
 
 # Retrieves and extracts the DB2 binaries
 # If it does not work, change the wiki https://github.com/angoca/db2unit/wiki/DB2-Download-link
 LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
 echo ${LINK}
-cd /tmp ; aria2c -x 16 ${LINK} ; tar zxvf *.tar.gz
+#cd /tmp ; aria2c -x 16 ${LINK} ; tar zxvf *.tar.gz
+cd /tmp ; wget ${LINK} ; tar zxvf *.tar.gz
 
 # Retrieves and extract log4db2
 cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
