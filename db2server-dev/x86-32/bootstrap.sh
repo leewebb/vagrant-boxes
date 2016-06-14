@@ -13,7 +13,8 @@ sudo apt-get install -qq libpam-ldap:i386
 
 # Retrieves and extracts the DB2 binaries
 # If it does not work, change the wiki https://github.com/angoca/db2unit/wiki/DB2-Download-link
-LINK=$(curl --url  -s | https://raw.githubusercontent.com/wiki/angoca/db2unit/DB2-Download-link.m://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md tail -1)
+LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
+echo ${LINK}
 cd /tmp ; aria2c -x 16 ${LINK} ; tar zxvf *.tar.gz
 
 # Retrieves and extract log4db2
