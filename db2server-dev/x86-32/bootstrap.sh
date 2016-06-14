@@ -29,7 +29,8 @@ sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
 cd /tmp/server_t ; ./db2prereqcheck -l
 
 # Install DB2 and creates an instance (Response file)
-sudo ./db2setup -r db2/db2.rsp || cat /tmp/db2setup.log
+cd /tmp ; wget https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/db2/db2.rsp
+cd /tmp/server_t ; sudo ./db2setup -r /tmp/db2.rsp || cat /tmp/db2setup.log
 
 # Changes the security
 sudo usermod -a -G db2iadm1 $USER
