@@ -56,7 +56,9 @@ sudo su - db2inst1 -c "db2 update dbm cfg using SYSADM_GROUP db2iadm1 ; db2stop 
 
 # Creates the database
 sudo su - db2inst1 -c "db2 create db db2unit ; db2 connect to db2unit ; db2 grant dbadm on database to user $USER"
-. ~db2inst1/sqllib/db2profile ; db2 connect to db2unit
+
+sudo su - db2inst1
+. ~/db2inst1/sqllib/db2profile ; db2 connect to db2unit
 
 # Install log4db2
 cd ; cd log4db2 ; . ./install
