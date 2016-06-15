@@ -9,6 +9,7 @@ DB2_SOURCE_LOCATION="$1"
 sudo apt-get update
 sudo apt-get install -y wget
 sudo apt-get install -y ksh
+sudo apt-get install -y libaio1 libaio-dev
 
 # if DB2 source location passed in then use this else try and d/l source
 if [ -r "$DB2_SOURCE_LOCATION" ]
