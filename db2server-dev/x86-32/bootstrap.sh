@@ -3,20 +3,34 @@
 ## DB2 Server provisioning
 ##  based on https://github.com/angoca/db2unit/blob/master/.travis.yml
 
+DB2_SOURCE_LOCATION="$1"
+
 ## core packages
 sudo apt-get update
 sudo apt-get install -y wget
-#sudo apt-get install -y aria2
 
 sudo apt-get install -y libaio1 lib32stdc++
 #sudo apt-get install -y libpam-ldap:i386
 
-# Retrieves and extracts the DB2 binaries
-# If it does not work, change the wiki https://github.com/angoca/db2unit/wiki/DB2-Download-link
-LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
-echo ${LINK}
-#cd /tmp ; aria2c -x 16 ${LINK} ; tar zxvf *.tar.gz
-cd /tmp ; wget --progress=dot:mega ${LINK} ; tar zxvf *.tar.gz
+# if DB2 source location passed in then use this else try and d/l source
+if [ -r "$DB2_SOURCE_LOCATION" ]
+then
+
+  # move source to /tmp
+  cp "$DB2_SOURCE_LOCATION" /tmp
+
+else
+
+  # Retrieves and extracts the DB2 binaries
+  # If it does not work, change the README https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md
+  DOWNLOAD_LINK=$(curl --url https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/README.md -s | tail -1)
+  echo "$DOWNLOAD_LINK"
+  cd /tmp ; wget --progress=dot:mega "$DOWNLOAD_LINK"
+
+fi
+
+# un-compress
+cd /tmp ; tar zxvf ./*.tar.gz
 
 # Retrieves and extract log4db2
 cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
@@ -35,7 +49,7 @@ cd /tmp ; wget https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/maste
 cd /tmp/server_t ; sudo ./db2setup -r /tmp/db2.rsp || cat /tmp/db2setup.log
 
 # Changes the security
-sudo usermod -a -G db2iadm1 $USER
+sudo usermod -a -G db2iadm1 "$USER"
 sudo chsh -s /bin/bash db2inst1
 sudo su - db2inst1 -c "db2 update dbm cfg using SYSADM_GROUP db2iadm1 ; db2stop ; db2start"
 
