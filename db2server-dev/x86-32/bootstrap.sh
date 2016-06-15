@@ -31,11 +31,6 @@ fi
 # un-compress
 cd /tmp ; tar zxvf ./*.tar.gz
 
-# Retrieves and extract log4db2
-cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
-
-# Retrieves and extract db2unit
-cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
 
 # INSTALL
 
@@ -57,15 +52,23 @@ sudo su - db2inst1 -c "db2 update dbm cfg using SYSADM_GROUP db2iadm1 ; db2stop 
 # Creates the database
 sudo su - db2inst1 -c "db2 create db db2unit ; db2 connect to db2unit ; db2 grant dbadm on database to user $USER"
 
+# Install code
 sudo su - db2inst1
-. ~/db2inst1/sqllib/db2profile ; db2 connect to db2unit
+. ~/db2inst1/sqllib/db2profile
+db2 connect to db2unit
+
+# Retrieves and extract log4db2
+cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
 
 # Install log4db2
 cd ; cd log4db2 ; . ./install
 
+# Retrieves and extract db2unit
+cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
+
 # Install db2unit
 cd ; cd db2unit ; . ./install
 
-# Install your code
+# Install your code here
 
 
