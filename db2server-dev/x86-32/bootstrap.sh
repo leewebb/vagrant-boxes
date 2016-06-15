@@ -8,9 +8,7 @@ DB2_SOURCE_LOCATION="$1"
 ## core packages
 sudo apt-get update
 sudo apt-get install -y wget
-
-sudo apt-get install -y libaio1 lib32stdc++
-#sudo apt-get install -y libpam-ldap:i386
+sudo apt-get install -y ksh
 
 # if DB2 source location passed in then use this else try and d/l source
 if [ -r "$DB2_SOURCE_LOCATION" ]
@@ -39,6 +37,8 @@ cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/l
 cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
 
 # INSTALL
+
+# dodgy hack to work around issues reported by db2prereqcheck
 sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
 
 # Checks the prerequisites
