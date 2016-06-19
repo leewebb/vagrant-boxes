@@ -6,7 +6,7 @@
 DB2_SOURCE_LOCATION="$1"
 
 ## core packages
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y wget
 sudo apt-get install -y ksh
 sudo apt-get install -y libaio1 libaio-dev
@@ -41,7 +41,8 @@ sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
 cd /tmp/server_t ; ./db2prereqcheck -l
 
 # Install DB2 and creates an instance (Response file)
-cd /tmp ; wget https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/db2/db2.rsp
+#cd /tmp ; wget https://raw.githubusercontent.com/jonbartlett/vagrant-boxes/master/db2server-dev/x86-32/db2/db2.rsp
+cp /vagrant/db2/db2.rsp /tmp
 cd /tmp/server_t ; sudo ./db2setup -r /tmp/db2.rsp || cat /tmp/db2setup.log
 
 # Changes the security
@@ -50,18 +51,39 @@ sudo chsh -s /bin/bash db2inst1
 sudo su - db2inst1 -c "db2 update dbm cfg using SYSADM_GROUP db2iadm1 ; db2stop ; db2start"
 
 # Creates the database
-sudo su - db2inst1 -c "db2 create db db2unit ; db2 connect to db2unit ; db2 grant dbadm on database to user $USER"
+sudo su - db2inst1 -c "db2 create db TSTDWD01 ; db2 connect to TSTDWD01 ; db2 grant dbadm on database to user $USER"
 
-# Install code
+# Export database schema
+
+# generate schema DDL
+#ssh hostname -c "db2look -d tstdwd01 -o db2look_tst_layout.sql -l"
+#ssh hostname -c "db2look -d tstdwd01 -e -o db2look_tst.sql"
+#scp hostname:db2look_tst_layout.sql .
+#scp hostname:db2look_tst.sql .
+
+# Modify export files for filesystem differences
+# db2look_tst_layout.sql
+#   comment out custom storage group creation
+# db2look_tst.sql
+#   %s/USING STOGROUP.*/USING STOGROUP "IBMSTOGROUP"/gc
+
+# Import database schema
+
+# Tablespaces (from 'db2look -d tstdwd01 -o db2look_tst_layout.sql -l')
+echo "create Tablespaces"
+sudo su - db2inst1 -c "db2 connect to TSTDWD01 ; db2 -tvf /vagrant/db2/db2look_tst_layout.sql" > /vagrant/db2/db2look_tst_layout.log
+
+# Schemas (from db2look -d tstdwd01 -e -o db2look_tst.sql)
+echo "create Schema"
+sudo su - db2inst1 -c "db2 connect to TSTDWD01 ; db2 -tvf /vagrant/db2/db2look_tst.sql" > /vagrant/db2/db2look_tst.log
+
 
 # Retrieve, extract and install log4db2
-sudo su - db2inst1 -c "cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz"
-sudo su - db2inst1 -c "db2 connect to db2unit ; cd ; cd log4db2 ; . ./init ; . ./install"
+#sudo su - db2inst1 -c "cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz"
+#sudo su - db2inst1 -c "db2 connect to db2unit ; cd ; cd log4db2 ; . ./init ; . ./install"
 
 # Retrieve, extract and install db2unit
-sudo su - db2inst1 -c "cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz"
-sudo su - db2inst1 -c "db2 connect to db2unit ; cd ; cd db2unit ; . ./init ; . ./install"
+#sudo su - db2inst1 -c "cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz"
+#sudo su - db2inst1 -c "db2 connect to db2unit ; cd ; cd db2unit ; . ./init ; . ./install"
 
-# Install your code here
-
-
+echo "end script"
