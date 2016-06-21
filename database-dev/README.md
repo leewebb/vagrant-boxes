@@ -55,6 +55,10 @@ If the DB2 server you are connecting to requires a SSL connection, you will need
 
 * Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux32*). You may need a valid IBM support account to do this.
 * Place downloaded file in the Vagrant directory so that is it accessible via the VM instance.
+```
+gunzip *.gz
+tar -xvf *.tar
+```
 * Convert the IBM rpms to deb for use with Ubuntu (ensure ```rpm``` and ```alien``` are installed):
 ```
 for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done
@@ -82,6 +86,10 @@ db2 connect to <database_name> user <user_name>
 db2 select current timestamp from SYSIBM.SYSDUMMY1
 ```
 
+More reading:
+
+* http://www.ibm.com/developerworks/data/library/techarticle/dm-1306securesocketlayers/
+* http://www-01.ibm.com/support/docview.wss?uid=swg21631460
 
 ## Oracle Client
 
