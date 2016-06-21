@@ -90,6 +90,7 @@ More reading:
 
 * http://www.ibm.com/developerworks/data/library/techarticle/dm-1306securesocketlayers/
 * http://www-01.ibm.com/support/docview.wss?uid=swg21631460
+* https://www.ibm.com/developerworks/library/se-gskit/
 
 ## Oracle Client
 
