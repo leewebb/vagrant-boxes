@@ -47,6 +47,40 @@ The newer client CLPPlus is available via the command ```clpplus```:
 clpplus -nw <username>@<db hostname>:<db port>/<db name>
 ```
 
+## DB2 SSL
+
+If the DB2 server requires a SSL connection, you will need to install IBM GSKit to enable this.
+
+### Installation
+
+* Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux32*). You may need a valid IBM support account to do this.
+* Place downloaded file in the Vagrant directory.
+* Convert the IBM rpms to deb for use with Ubuntu (ensure ```rpm``` and ```alien``` are installed):
+```for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done```
+* Install converted packages:
+```
+sudo dpkg -i gskcrypt32_8.0-15.43_i386.deb
+sudo dpkg -i gskssl32_8.0-15.43_i386.deb
+```
+* Check ```/usr/local/ibm/gsk8``` created to verify installation.
+* Create location for key files ```mkdir ~/.db2keystore``` and copy the server key (.kdb) and stash (.sth) files here.
+* Update DB2 config:
+```
+db2 update dbm cfg using SSL_CLNT_KEYDB ~/.db2keystore/<keyfile>.kdb
+db2 update dbm cfg using SSL_CLNT_STASH ~/.db2keystore/<stashfile>.sth
+```
+* Verify config update:
+```db2 get dbm cfg```
+* (Re)catalog databases with SSL:
+```
+db2 catalog tcpip node <nodename> remote <db hostname> server <port> security ssl
+db2 catalog database <database_name> at node <nodename>
+db2 terminate
+db2 connect to <database_name> user <user_name>
+db2 select current timestamp from SYSIBM.SYSDUMMY1
+```
+
+
 ## Oracle Client
 
 Coming....

@@ -3,7 +3,9 @@
 # START Bootstrap script for Database Dev Box provisioning
 
 # core packages
-sudo apt-get install ksh # for DB2 client install
+sudo apt-get install -y ksh   # for DB2 client install
+sudo apt-get install -y rpm   # for IBM GSKIT
+sudo apt-get install -y alien # for IBM GSKIT
 
 # Install DB2 Client
 #  client download from http://www-01.ibm.com/support/docview.wss?uid=swg21385217
@@ -28,6 +30,10 @@ ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so
 
 # run install script
 ./db2_install
+
+# install GSKit (for DB2 SSL Connections)
+# see README
+
 
 # Modify bashrc to source db2profile (not needed for none root install)
 #cat <<EOT >> ~/.bashrc
