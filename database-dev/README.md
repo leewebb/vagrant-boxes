@@ -49,14 +49,16 @@ clpplus -nw <username>@<db hostname>:<db port>/<db name>
 
 ## DB2 SSL
 
-If the DB2 server requires a SSL connection, you will need to install IBM GSKit to enable this.
+If the DB2 server you are connecting to requires a SSL connection, you will need to install IBM GSKit to enable this.
 
 ### Installation
 
 * Download GSKit V8 from [here](http://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/Tivoli/IBM+Global+Security+Kit&function=fixId&fixids=8.0.14.*-GSKIT-Linux32*). You may need a valid IBM support account to do this.
-* Place downloaded file in the Vagrant directory.
+* Place downloaded file in the Vagrant directory so that is it accessible via the VM instance.
 * Convert the IBM rpms to deb for use with Ubuntu (ensure ```rpm``` and ```alien``` are installed):
-```for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done```
+```
+for rpm in gsk*.rpm ; do sudo alien -c -d $rpm ; done
+```
 * Install converted packages:
 ```
 sudo dpkg -i gskcrypt32_8.0-15.43_i386.deb
